@@ -1,0 +1,27 @@
+package com.khit.study.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.khit.study.entity.BoardVO;
+
+// @RestController : 문자열을 반환하는 어노테이션 (웹에 return값을 문자열로 출력)
+// @ResponseBody, @ResponseEntity와 비슷함
+@RestController
+public class BoardController {
+
+	@GetMapping("/greeting")
+	public String sayHello(String name) {
+		return "hello~" + name + " :D"; // 문자열! hello.html 실제파일아님
+	}
+	
+	@GetMapping("/board/detail")
+	public BoardVO getBoard() {
+		//게시글 1건 생성
+		BoardVO board = new BoardVO();
+			board.setId(1);
+			board.setTitle("제목");
+			board.setContent("집에갈래용");
+		
+	}
+}

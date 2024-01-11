@@ -1,0 +1,24 @@
+package com.khit.study.service;
+
+import java.util.Date;
+
+import org.springframework.stereotype.Controller;
+
+import com.khit.study.entity.BoardVO;
+
+@Controller
+public class BoardService {
+	
+	// 상세보기
+	public BoardVO getBoard() {
+		BoardVO board = new BoardVO();
+		board.setId(1);
+		board.setTitle("제목");
+		board.setWriter("Lia");
+		board.setContent("집에갈래용");
+		board.setCreatedDate(new Date());
+		
+		return board;
+	}
+	
+}

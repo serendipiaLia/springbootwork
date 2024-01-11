@@ -1,0 +1,14 @@
+package com.khit.study.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class BoardController {
+
+	@GetMapping("/greeting")
+	public String sayHello() {
+		return "hello"; // RestController가 어노테이션이면 문자열임! hello.html 파일아님
+	}
+	
+}
