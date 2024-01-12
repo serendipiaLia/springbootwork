@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글 상세보기</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+	<div class="wrap">
+		<h2>see POST</h2>
+			<table class="tbl_write">
+				<tbody>
+					<tr>
+						<td>
+							<input type="text" name="title" value="${board.id }" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" name="title" value="${board.title }" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" name="writer" placeholder="Writer" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea rows="5" cols="60" name="content" placeholder="Add your caption.." readonly></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" value="Upload">
+							<input type="reset" value="Cancel">
+						</td>
+					</tr>
+				</tbody>
+			</table>		
+	</div>
+</body>
+</html>

@@ -2,38 +2,79 @@ package com.khit.study.controller;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.khit.study.entity.BoardVO;
+import com.khit.study.entity.Board;
 import com.khit.study.service.BoardService;
 
 import lombok.AllArgsConstructor;
-
-// @RestController : 문자열을 반환하는 어노테이션 (웹에 return값을 문자열로 출력)
-// @ResponseBody, @ResponseEntity와 비슷함
+import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
-@RestController // 객체를 문자열로 변환하는 클래스
+@Slf4j
+@Controller
 public class BoardController {
-
+	
 	private BoardService boardService;
 	
-	@GetMapping("/greeting")
-	public String sayHello(String name) {
-		return "hello~" + name + " :D"; // 문자열! hello.html 실제파일아님
+	// 글쓰기 페이지
+	@GetMapping("/board/write")
+	public String writeForm(){
+		return "/board/write";
 	}
 	
-	@GetMapping("/board/detail")
-	public BoardVO getBoard() {
-		BoardVO board = boardService.getBoard();
-		return board;
+	// 글쓰기 처리
+	@PostMapping("/board/write")
+	public String write(@ModelAttribute Board board) {
+		log.info("board", board);
+		boardService.save(board); //Repository와 맞춰주기 (save)
+		return "redirect:/board/";
 	}
 	
-	@GetMapping("/board/list")
-	public List<BoardVO> getBoardList(){
-		List<BoardVO> boardList = boardService.getBoardList();
-		return boardList;
-		}
+	// 글 목록
+	@GetMapping("/board/")
+	public String getBoardList(Model model) {
+		List<Board> boardList = boardService.findAll();
+		model.addAttribute("boardList", boardList);
+		return "/board/list";
+	}
+	
+	// 글 상세보기
+	@GetMapping("/board")
+	public String getBoard(@RequestParam("id") int id, Model model) {
+		Board board = boardService.findById(id);
+		model.addAttribute("board", board);
+		return "/board/detail";
+	}
+	
+	// 글 삭제하기
+	@GetMapping("/board/delete")
+	public String deleteBoard(@RequestParam("id")int id) {
+		boardService.delete(id);
+		return "redirect:/board/";
+	}
+	
+	// 글 수정페이지 요청
+	@GetMapping("/board/update")
+	public String updateForm(@RequestParam("id")int id, Model model) {
+		//수정할 게시글 가져오기
+		Board board = boardService.findById(id);
+		// 페이지에 모델 전송
+		model.addAttribute("board", board);
+		return "/board/update";
+	}
+	
+	// 글 수정 처리
+	@PostMapping("/board/update")
+	public String updateBoard(@ModelAttribute Board board) {
+		// 수정 후 상세보기로 이동
+		boardService.update(board);
+		return "redirect:/board?id=" + board.getId();
+	}
+	
 }
-	

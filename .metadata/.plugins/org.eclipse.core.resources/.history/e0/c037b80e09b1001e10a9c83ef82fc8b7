@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* home.html과 연결 */
+
+/* index.jsp */
+.wrap{
+	width:1000px;
+	margin:30px auto;
+	text-align:center;
+}
+h1{color:lightpink;}
+
+/* write.jsp */
