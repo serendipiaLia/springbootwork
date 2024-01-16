@@ -22,6 +22,7 @@
 					</tr>
 				</thead>
 				<tbody>
+<%-- 		타임리프:	<tr th:each="board:${board.List }"> --%>
 					<c:forEach items="${boardList }" var="board">
 						<tr>
 							<td>${board.id }</td>

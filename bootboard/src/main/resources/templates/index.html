@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>홈페이지</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div id="container">
+		<h2>My Home</h2>
+		<div class="main-img">
+			<img th:alt="happy" src="/images/happy.jpeg" style="width:500px">
+		</div>
+		
+		<div class="menu">
+			<a th:href="@{/member/join}" class="btns"><button>Join</button></a>
+			<a th:href="@{/member/list}" class="btns"><button>Users</button></a>
+			<a th:href="@{/member/login}" class="btns"><button>Login</button></a>
+		</div>
+	</div>
+</body>
+</html>
