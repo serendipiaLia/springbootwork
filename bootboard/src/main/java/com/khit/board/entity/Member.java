@@ -40,11 +40,22 @@ public class Member {
 	
 	// MemberDTO를 매개로 받아서 entity에 저장하는 정적메서드 생성 >> 회원가입에 사용
 	public static Member toSaveEntity(MemberDTO memberDTO) {
-		Member member = new Member();
-		member.setMemberEmail(memberDTO.getMemberEmail()); //폼에서 입력한걸 가져오는 메서드
-		member.setMemberPassword(memberDTO.getMemberPassword());
-		member.setMemberName(memberDTO.getMemberName());
-		member.setMemberAge(memberDTO.getMemberAge());
+//		Member member = new Member();
+//		member.setMemberEmail(memberDTO.getMemberEmail()); //폼에서 입력한걸 가져오는 메서드
+//		member.setMemberPassword(memberDTO.getMemberPassword());
+//		member.setMemberName(memberDTO.getMemberName());
+//		member.setMemberAge(memberDTO.getMemberAge());
+//		
+//		return member;
+		
+		// 위 메소드를 builder()로 생성 > 위에서 @Builder해줘야 함
+		Member member = Member.builder()
+				// 필드생성
+				.memberEmail(memberDTO.getMemberEmail())
+				.memberPassword(memberDTO.getMemberPassword())
+				.memberName(memberDTO.getMemberName())
+				.memberAge(memberDTO.getMemberAge())
+				.build();
 		
 		return member;
 	}

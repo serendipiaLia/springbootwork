@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khit.board.dto.MemberDTO;
 import com.khit.board.service.MemberService;
@@ -71,7 +73,8 @@ public class MemberContorller {
 		if(loginMember != null) {
 			// 세션발급 > HttpSession session으로..
 			session.setAttribute("sessionEmail", loginMember.getMemberEmail());
-			return "main";
+			session.setAttribute("sessionName", loginMember.getMemberName());
+			return "/main";
 		}else {
 			String error = "아이디나 비밀번호를 확인해 주세요 !";
 			model.addAttribute("error", error);
@@ -100,4 +103,12 @@ public class MemberContorller {
 		memberService.update(memberDTO);
 		return "redirect:/member/" + memberDTO.getId(); //상세페이지
 	}
+	// 이메일 중복 검사
+	@PostMapping("/member/check-email")
+	public @ResponseBody String checkEmail(@RequestParam("memberEmail") String memberEmail) {
+		String resultText = memberService.checkEmail(memberEmail);
+		return resultText;
+	}
+	
+	
 }

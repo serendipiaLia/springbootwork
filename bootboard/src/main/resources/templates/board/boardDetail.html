@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 상세보기</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div id="container">
+		<h2>Post Detail</h2>
+			<table class="detailForm">
+				<tbody>
+					<tr>
+						<td>
+							<span th:text="|Title : |"></span>
+							<input type="text" name="boardTitle" th:value="${board.boardTitle}" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="|Writer : |"></span>
+							<input type="text" name="boardWriter" th:value="${board.boardWriter}" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea rows="5" cols="60" name="boardContent" th:text="${board.boardContent}" readonly></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="|hit : | +  ${board.boardHits}" ></span>
+<!-- 							<input type="text" name="boardHits" th:value="${board.boardHits}" readonly> -->
+						</td>
+					</tr>
+					<tr>
+						<td> <!-- 수정일 . 작성일 -->
+							<span th:if="${board.updatedDate} != null" th:text="'Update : ' + ${#temporals.format(board.updatedDate,'yyyy-MM-dd HH:mm')}" ></span>
+							<span th:unless="${board.updatedDate} != null" th:text="'Date created : ' + ${#temporals.format(board.createdDate,'yyyy-MM-dd HH:mm')}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>(수정 및 삭제는 로그인 후 본인만 가능합니다.)</p>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<!-- sesssionName이 있으면 수정삭제 가능! =로그인필요 -->
+							<span th:if="${session.sessionName == board.boardWriter}" >
+								<a th:href="@{|/board/boardUpdate/${board.id}|}"><input type="button" value="Edit" ></a> <!-- 게시글 수정-->
+								<a th:href="@{|/board/delete/${board.id}|}" onclick="return confirm('삭제하시겠습니까?')"><input type="button" value="Delete"></a><!-- 게시글 삭제 -->
+							</span>
+								<a th:href="@{/board/list}" class="btns"><button type="button">Back</button></a> <!-- 게시글목록으로 이동 -->
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+
+</body>
+</html>

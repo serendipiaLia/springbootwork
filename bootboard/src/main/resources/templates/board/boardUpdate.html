@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 수정 페이지</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div id="container">
+		<h2>Edit Post</h2>
+			<form th:action="@{/board/update}" method="post" class="detailForm">
+				<input type="hidden" name="id" th:value="${board.id}" >
+				<input type="hidden" name="boardHits" th:value="${board.boardHits}">
+				<table>
+				<tbody>
+					<tr>
+						<td>
+							<span th:text="|Title : |"></span>
+							<input type="text" name="boardTitle" th:value="${board.boardTitle}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="|Writer : |"></span>
+							<input type="text" name="boardWriter" th:value="${board.boardWriter}" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea rows="5" cols="60" name="boardContent" th:text="${board.boardContent}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="|hit : | +  ${board.boardHits}" ></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="|Date created : | + ${#temporals.format(board.createdDate,'yyyy-MM-dd HH:mm')}"></span>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+						 	<input type="submit" value="Save">
+						 	<input type="reset" value="Cancel">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+
+</body>
+</html>

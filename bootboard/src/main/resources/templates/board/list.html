@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 상세보기</title>
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2>Posts</h2>
+			<table class="tableList">
+				<thead>
+					<tr>
+						<th>No. </th>
+						<th>Title </th>
+						<th>Writer </th>
+						<th>Hit </th>
+						<th>Created Date </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="board: ${boardList}">
+						<td th:text="${board.id}"></td>
+						<td><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}" class="view_resign"></a></td>
+						<td th:text="${board.boardWriter}"></td>
+						<td th:text="${board.boardHits}"></td>
+						<td> <!-- 수정일 . 작성일 -->
+							<span th:if="${board.updatedDate} != null" th:text="'Update : ' + ${#temporals.format(board.updatedDate,'yyyy-MM-dd HH:mm')}" ></span>
+							<span th:unless="${board.updatedDate} != null" th:text="'Date created : ' + ${#temporals.format(board.createdDate,'yyyy-MM-dd HH:mm')}"></span>
+						</td>
+					</tr>				
+				</tbody>
+			</table>
+			<div class="btns">
+				<a th:href="@{/}"><button>Home</button></a>
+			</div>
+	</div>
+</body>
+</html>

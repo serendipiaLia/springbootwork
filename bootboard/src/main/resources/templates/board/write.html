@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 작성 페이지</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div id="container">
+		<h2>New Post</h2>
+		<form th:action="@{/board/write}" method="post" th:object="${boardDTO}" class="writeForm" >
+			<div th:if="${#fields.hasAnyErrors()}"> <!-- 강사님 fields 사용 -->
+				<div th:each="err: ${#fields.allErrors()}" th:text="${err}" class="writeError"></div> <!-- error가 있으면 ${err}출력해라 -->
+			</div>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<input type="text" th:field="*{boardTitle}" placeholder="Add a Title">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" name="boardWriter" th:value="${session.sessionName}" >
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea rows="5" cols="60" th:field="*{boardContent}" placeholder="Add your Caption.."></textarea>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<input type="submit" value="Add">
+							<input type="reset" value="Cancel">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+
+</body>
+</html>
