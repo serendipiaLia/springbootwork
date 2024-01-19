@@ -29,6 +29,11 @@
 					</tr>
 					<tr>
 						<td>
+							<img th:src="@{${board.filepath}}">
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<span th:text="|hit : | +  ${board.boardHits}" ></span>
 <!-- 							<input type="text" name="boardHits" th:value="${board.boardHits}" readonly> -->
 						</td>
@@ -52,7 +57,8 @@
 								<a th:href="@{|/board/boardUpdate/${board.id}|}"><input type="button" value="Edit" ></a> <!-- 게시글 수정-->
 								<a th:href="@{|/board/delete/${board.id}|}" onclick="return confirm('삭제하시겠습니까?')"><input type="button" value="Delete"></a><!-- 게시글 삭제 -->
 							</span>
-								<a th:href="@{/board/list}" class="btns"><button type="button">Back</button></a> <!-- 게시글목록으로 이동 -->
+								<!-- Pageable 클래스의 page -> getPageNumber() -->
+								<a th:href="@{/board/pagelist(page=${page})}" class="btns"><input type="button" value="Back"></a> <!-- 게시글목록으로 이동 -->
 						</td>
 					</tr>
 				</tbody>

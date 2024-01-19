@@ -8,7 +8,7 @@
 <body>
 	<div id="container">
 		<h2>New Post</h2>
-		<form th:action="@{/board/write}" method="post" th:object="${boardDTO}" class="writeForm" >
+		<form th:action="@{/board/write}" method="post" enctype="multipart/form-data" th:object="${boardDTO}" class="writeForm" >
 			<div th:if="${#fields.hasAnyErrors()}"> <!-- 강사님 fields 사용 -->
 				<div th:each="err: ${#fields.allErrors()}" th:text="${err}" class="writeError"></div> <!-- error가 있으면 ${err}출력해라 -->
 			</div>
@@ -29,7 +29,11 @@
 							<textarea rows="5" cols="60" th:field="*{boardContent}" placeholder="Add your Caption.."></textarea>
 						</td>
 					</tr>
-					
+					<tr>
+						<td>
+							<input type="file" name="boardFile">
+						</td>
+					</tr>
 					<tr>
 						<td>
 							<input type="submit" value="Add">

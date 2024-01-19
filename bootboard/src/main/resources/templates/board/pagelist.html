@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 목록</title>
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2>Posts</h2>
+	<!-- 검색 영역 -->
+	<form th:action="@{/board/pagelist}" method="get" class="searchform">
+		<!-- 검색할 자료 타입 고르기! (제목 or 내용) -->
+		<select name="type" class="selectType">
+			<option th:value="title" th:text="Title" th:selected="${type=='title'}"></option>
+			<option th:value="content" th:text="Content" th:selected="${type=='content'}"></option>
+		</select>
+	 
+		<input type="text" name="keyword"> 
+		<input type="submit" value="Search"> 
+		</form>
+			<table class="tableList">
+				<thead>
+					<tr>
+						<th>No. </th>
+						<th>Title </th>
+						<th>Writer </th>
+						<th>Hit </th>
+						<th>Created Date </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="board: ${boardList}">
+						<td th:text="${board.id}"></td>
+						<!-- {boardList.number+1}는 Page 클래스의 메서드 -->
+						<td><a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}" th:text="${board.boardTitle}" class="view_resign"></a></td>
+						<td th:text="${board.boardWriter}"></td>
+						<td th:text="${board.boardHits}"></td>
+						<td> <!-- 수정일 . 작성일 -->
+							<span th:if="${board.updatedDate} != null" th:text="'Update : ' + ${#temporals.format(board.updatedDate,'yyyy-MM-dd HH:mm')}" ></span>
+							<span th:unless="${board.updatedDate} != null" th:text="'Date created : ' + ${#temporals.format(board.createdDate,'yyyy-MM-dd HH:mm')}"></span>
+						</td>
+					</tr>				
+				</tbody>
+			</table>
+			<!-- 글쓰기, index로 가는 버튼 -->
+			<div class="btns">
+				<a th:href="@{/board/write}"><button>New Post</button></a>
+				<a th:href="@{/}"><button>Home</button></a>
+			</div>
+			<!-- 페이지 영역 -->
+			<div class="pageNumber">
+				<!-- 이전 페이지 -->
+				<a th:href="${boardList.first}? '#' : @{/board/pagelist(page=${boardList.number})}">&laquo;</a> <!-- boardlist = getPageNumber() -->
+				<!-- 페이지 번호 블럭 -->
+				<span th:each="page : ${#numbers.sequence(startPage, endPage)}">
+<!-- 				<span th:text="${page}"></span> -->
+					<!-- 현재 페이지는 링크 없이 숫자만 표시! a태그 말고 span태그 사용  --> 
+					<span th:if="${page == boardList.number + 1}" th:text="${page}" class="nowpage"></span>
+					<span th:if="${page!= boardList.number +1 }">
+						<a th:href="@{/board/pagelist(page=${page})}" th:text="${page}"></a> <!-- 쿼리스트링 방식 >> /pagelist?page=1 로 나타남 -->
+					</span>
+				</span>
+				<!-- 다음 페이지 -->
+				<a th:href="${boardList.last} ? '#' : @{/board/pagelist(page=${boardList.number+2})}">&raquo;</a>
+			</div>
+	</div>
+</body>
+</html>

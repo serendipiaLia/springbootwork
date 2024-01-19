@@ -33,9 +33,15 @@ public class BoardDTO {
 	private String boardContent;
 	
 	private Integer boardHits;
+	
+	//파일
+	private String filename;
+	private String filepath;
+	
 	// BaseEntity.java
 	private LocalDateTime createdDate;
 	private LocalDateTime updatedDate;
+	
 	
 	// Entity > DTO로 변환할 정적 메서드
 	public static BoardDTO toSaveDTO(Board board) {
@@ -44,6 +50,8 @@ public class BoardDTO {
 				.boardTitle(board.getBoardTitle())
 				.boardWriter(board.getBoardWriter())
 				.boardContent(board.getBoardContent())
+				.filename(board.getFilename())
+				.filepath(board.getFilepath())
 				.boardHits(board.getBoardHits())
 				.createdDate(board.getCreatedDate())
 				.updatedDate(board.getUpdatedDate())

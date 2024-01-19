@@ -37,6 +37,13 @@ public class Board extends BaseEntity{
 	@Column
 	private Integer boardHits; // 조회수
 	
+	// 파일
+	@Column
+	private String filename; //boardController에 있는  MultipartFile boardFile과 이름 다르게..
+	@Column
+	private String filepath;
+	
+	
 	// DTO를 Entity로 변환하는 정적 메서드 
 	public static Board toSaveEntity(BoardDTO boardDTO) {
 		Board board = Board.builder()
@@ -44,6 +51,8 @@ public class Board extends BaseEntity{
 				.boardTitle(boardDTO.getBoardTitle())
 				.boardWriter(boardDTO.getBoardWriter())
 				.boardContent(boardDTO.getBoardContent())
+				.filename(boardDTO.getFilename())
+				.filepath(boardDTO.getFilepath())
 				.boardHits(0)
 				.build();
 		return board;
@@ -56,6 +65,8 @@ public class Board extends BaseEntity{
 				.boardTitle(boardDTO.getBoardTitle())
 				.boardWriter(boardDTO.getBoardWriter())
 				.boardContent(boardDTO.getBoardContent())
+				.filename(boardDTO.getFilename())
+				.filepath(boardDTO.getFilepath())
 				.boardHits(boardDTO.getBoardHits())
 				.build();
 		return board;
