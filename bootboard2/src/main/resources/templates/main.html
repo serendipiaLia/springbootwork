@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>메인페이지</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div id="main_container">
+		<h2 th:text="'Welcome!'"></h2>&nbsp;&nbsp;
+		 <h2 th:text=" ${session.sessMemberId}" class="sessionColor"></h2>&nbsp;&nbsp;
+		 <h2 th:text="':D'"></h2>
+	</div>
+	<div class="main-img">
+			<img th:alt="toyou.." src="/images/perfect.PNG" style="width:500px">
+	</div>
+	<div class="menu">
+		<a th:href="@{/board/list}" class="btns"><button>Posts</button></a>
+		<a th:href="@{/board/write}" class="btns"><button>New Post</button></a>
+		<a th:href="@{/}" class="btns"><button>Home</button></a>
+	</div>
+	
+</body>
+</html>

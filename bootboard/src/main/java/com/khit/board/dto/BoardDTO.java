@@ -38,7 +38,7 @@ public class BoardDTO {
 	private String filename;
 	private String filepath;
 	
-	// BaseEntity.java
+	// BaseEntity.javaR
 	private LocalDateTime createdDate;
 	private LocalDateTime updatedDate;
 	

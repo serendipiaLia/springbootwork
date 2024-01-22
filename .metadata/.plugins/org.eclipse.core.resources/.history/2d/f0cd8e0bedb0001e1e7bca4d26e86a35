@@ -1,6 +1,0 @@
-package com.khit.study.repository;
-
-//JPARepository를 상속해야 함	
-public interface BoardRepository extends JpaRepository<Board, Integer>{
-
-}

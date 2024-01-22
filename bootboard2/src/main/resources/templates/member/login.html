@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2>Sign In</h2>
+		<form th:action="@{/member/login}" method="post" class="joinForm">
+			<fieldset>
+				<ul>
+				  <li> 
+				  	<label for="memberId">ID</label>
+				  	<input type="text" name="memberId" id="memberId" required>
+				  </li>
+				  <li> 
+				  	<label for="password">Password</label>
+				  	<input type="password" name="password" id="password" required>
+				  </li>
+				
+<!-- 				  <li> -->
+<!-- 				  	<span th:text="${error}" class="error"></span> -->
+<!-- 				  </li> -->
+				
+				  <li class="input_btn"> 
+				  	<input type="submit" value="Login">
+				  	<input type="reset" value="Cancel">
+				  </li>
+				</ul>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

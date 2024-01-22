@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+#container{width:100%; margin: 0 auto;}
+a{text-decoration:none;}
+h2{color : gray; text-align:center;}
+ul li{list-style:none;}
+input{
+	border:none;
+	border-radius: 20px;
+    padding: 5px 25px;
+    background: linear-gradient(to bottom, rgb(210, 210, 210), rgb(253, 253, 253) );
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));}
+.btns{text-align:center; margin-top:25px; display:flex; justify-content: space-evenly; }
+
+.btns button{
+	font-weight:bolder;
+	color:gray;
+	border:none;
+	border-radius: 20px;
+    padding: 5px 25px;
+    background: linear-gradient(to bottom, rgb(210, 210, 210), rgb(253, 253, 253) );
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+   }
+.btns button:hover{color:orange; cursor:pointer;}
+label{margin-right: 10px;}
+
+/* index.html */
+.main-img{text-align:center;}
+.menu{display:flex; justify-content: space-evenly; margin-bottom:25px;}
+
+/* join.html */
+.joinForm{width:80%; margin:0 auto;}
+fieldset{display:flex; 
+		justify-content: center; 
+		background: linear-gradient(to top, rgb(210, 210, 210), rgb(253, 253, 253));
+		border-radius: 20px;
+		}
+fieldset ul{display:flex; 
+			flex-direction: column;
+			align-items: flex-end; 
+			padding:0; }
+fieldset ul li{margin:8px;}
+fieldset ul li label{font-weight:bolder; color:gray;}
+input[type="submit"]{font-weight:bolder; color:gray; }
+input[type="submit"]:hover{color:orange; cursor: pointer; }
+input[type="reset"]{font-weight:bolder; color:gray;}
+input[type="reset"]:hover{color:orange; cursor: pointer;}
+input[type="file"]{font-weight:bolder; color:gray;}
+input[type="file"]:hover{color:orange; cursor: pointer;}
+
+/* login.html */
+.error{font-size:1vw; color:darkorange;}
+
+/* list.html */
+.tableList{width:80%; margin: 0 auto; 
+			border-radius: 20px; 
+			border:2px solid gray; 
+			padding: 5px;
+			text-align:center;
+			background: rgb(244, 244, 244);
+		border-spacing: 10px;}
+.tableList tr{border:none;}
+/* .tableList th{border-bottom:1px solid gray;} */
+.tableList td {border-bottom:0.3px solid gray;
+				border-radius: 30px;
+				padding:3px;
+}
+.view_resign{text-decoration:none; font-weight:500; color:darkorange; }
+.view_resign:hover{color:gray;}
+
+/* detail.html */
+.detail{width:80%; margin:0 auto;}
+
+/* main.html */
+#main_container{display:flex; justify-content: center; width:100%; margin: 0 auto;}
+.sessionColor{color:orange;}
+
+/* update.html */
+.updateP{text-align:center; font-size:1.3vw;}
+.updateP span{color: orange;}
+
+/* ========================================
+ 
+ 			board !!!
+
+===================================*/
+/* write.html */
+.writeForm{width:80%; margin: 0 auto; }
+.writeForm table{display:flex; 
+		justify-content: center; 
+		background: linear-gradient(to top, rgb(210, 210, 210), rgb(253, 253, 253));
+		border-radius: 20px;
+		border: 1.7px solid gray;
+		padding: 10px 0 10px 0;
+		}
+.writeForm td{padding:5px 0;}
+/* .writeError{color:darkorange;  text-align:center; font-size:small; margin-bottom: 5px; } */
+
+/* boardDetail.html */
+.detailForm{width:80%; margin: 0 auto;
+		display:flex; 
+		justify-content: center; 
+		background: linear-gradient(to top, rgb(210, 210, 210), rgb(253, 253, 253));
+		border-radius: 20px;
+		border: 1.7px solid gray;
+		padding: 10px 0 10px 0;}
+
+/* boardUpdate.html */
+.detailForm input[type="button"]{font-weight:bolder; color:gray; }
+.detailForm input[type="button"]:hover{color:orange; cursor: pointer; }
+
+.detailForm tbody{display:flex;
+				flex-direction: column;
+   				align-items: center;}
+.detailForm p{font-size:11px; color:darkorange;}
+.detailForm textarea{width:30vw;}
+.detailForm input{width:25vw;}
+
+/* pagelist.html */
+.pageNumber{display:flex; justify-content: center; margin-top:19px; margin-bottom:30px;}
+.pageNumber span.nowpage{color:orange; font-weight:bolder; padding: 0 10px;}
+.pageNumber a{padding: 0 10px; font-weight:bolder; color:gray;}
+.pageNumber a:hover{color:orange;}
+/* pagelist 검색영역 */
+#container .searchform{text-align:right; padding-right: 100px; margin-bottom:20px;}
+#container .selectType{background: linear-gradient(to bottom, rgb(210, 210, 210), rgb(253, 253, 253));
+						border-radius: 20px; border:none; color:gray;  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+						cursor:pointer;}
+
+/* boardUpdate.html */
+.updateBtn{width:300px;}
+
+   				

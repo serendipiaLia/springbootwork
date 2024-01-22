@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>글 수정 페이지</title>
+<title>글 수정 하기</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<div id="container">
 		<h2>Edit Post</h2>
-			<form th:action="@{/board/update}" method="post" class="detailForm">
+			<form th:action="@{/board/update}" method="post" class="detailForm" enctype="multipart/form-data">
 				<input type="hidden" name="id" th:value="${board.id}" >
 				<input type="hidden" name="boardHits" th:value="${board.boardHits}">
 				<table>
@@ -32,6 +32,11 @@
 					</tr>
 					<tr>
 						<td>
+							<img th:src="@{${board.filepath}}">
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<span th:text="|hit : | +  ${board.boardHits}" ></span>
 						</td>
 					</tr>
@@ -42,7 +47,8 @@
 					</tr>
 					
 					<tr>
-						<td>
+						<td class="updateBtn">
+							<input type="file" name="boardFile">
 						 	<input type="submit" value="Save">
 						 	<input type="reset" value="Cancel">
 						</td>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div id="container">
+		<h2>Hi..</h2>
+		<div class="main-img">
+			<img th:alt="i_hate_study" src="/images/study.PNG" style="width:500px">
+		</div>
+		
+		<div class="menu">
+			<a th:href="@{/member/login}" class="btns"><button>Login</button></a>
+			<a th:href="@{/board/write}" class="btns"><button>New Post</button></a>
+			<a th:href="@{/board/list}" class="btns"><button>Posts</button></a>
+		</div>
+	</div>
+
+</body>
+</html>

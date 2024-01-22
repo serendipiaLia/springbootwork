@@ -37,6 +37,8 @@ public class Board extends BaseEntity{
 	@Column
 	private Integer boardHits; // 조회수
 	
+	// write.html에서 name 값과 다른 이름으로 만들것
+	// multipartfile 
 	// 파일
 	@Column
 	private String filename; //boardController에 있는  MultipartFile boardFile과 이름 다르게..
@@ -71,5 +73,17 @@ public class Board extends BaseEntity{
 				.build();
 		return board;
 	}
-	
+//	// DTO를 Entity로 수정하여 변환하는 정적 메서드 
+//	public static Board toUpdateNoFile(BoardDTO boardDTO) {
+//		Board board = Board.builder()
+//				// 필드드 생성
+//				.id(boardDTO.getId())
+//				.boardTitle(boardDTO.getBoardTitle())
+//				.boardWriter(boardDTO.getBoardWriter())
+//				.boardContent(boardDTO.getBoardContent())
+//				.boardHits(boardDTO.getBoardHits())
+//				.build();
+//		return board;
+//	}
+//	
 }
