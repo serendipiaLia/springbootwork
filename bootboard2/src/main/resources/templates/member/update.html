@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원정보 수정하기</title>
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
+	<div id="container">
+		<h2>My Page</h2>
+		<p class="updateP">회원정보 수정 후, 꼭 저장해 주세요!<br><span>(ID 수정 불가!!)</span></p>
+			<div class="detail">
+				<form th:action="@{/member/update}" method="post">
+					<input type="hidden" name="id" th:value="${member.id}">
+					<fieldset>
+						<ul>
+						  <li> 
+						  	<label for="memberId">ID</label>
+						  	<input type="text" name="memberId" id="memberId" th:value="${member.memberId}" readonly>
+						  </li> 
+						  <li> 
+						  	<label for="password">Password</label>
+						  	<input type="password" name="password" id="password" th:value="${member.password}" >
+						  </li>
+						  <li> 
+						  	<label for="name">Name</label>
+						  	<input type="text" name="name" id="name" th:value="${member.name}" >
+						  </li>
+						</ul>
+					</fieldset>
+					
+					<div class="btns">
+						<button type="submit">Save</button>
+						<button type="reset">Cancel</button>
+					</div>
+				</form>
+			
+			</div>
+	</div>
+	<div th:replace="~{/layout/footer::footer-fragment}"></div>
+</body>
+</html>

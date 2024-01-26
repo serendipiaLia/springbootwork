@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>메인페이지</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
 	<div id="main_container">
-		<h2 th:text="'Welcome!'"></h2>&nbsp;&nbsp;
-		 <h2 th:text=" ${session.sessMemberId}" class="sessionColor"></h2>&nbsp;&nbsp;
-		 <h2 th:text="':D'"></h2>
+		<!-- 인증 권한 처리 -->
+		<div sec:authorize="isAuthenticated()" class="main_auth"> 
+			<p th:text="${#authentication.getPrincipal()}"></p> <!-- 로그인 한 사람과 하지 않은 사람 구분 -->
+			<h3 sec:authentication="principal.member.name"></h3>
+		</div>
 	</div>
+		
 	<div class="main-img">
 			<img th:alt="toyou.." src="/images/perfect.PNG" style="width:500px">
 	</div>
+	
 	<div class="menu">
-		<a th:href="@{/board/list}" class="btns"><button>Posts</button></a>
-		<a th:href="@{/board/write}" class="btns"><button>New Post</button></a>
+		<a th:href="@{/member/logout}" class="btns"><button>Logout</button></a>
+		<a th:href="@{/member/update}" class="btns"><button>MyPage</button></a>
 		<a th:href="@{/}" class="btns"><button>Home</button></a>
 	</div>
-	
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
 </body>
 </html>

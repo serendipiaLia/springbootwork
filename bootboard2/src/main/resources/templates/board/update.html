@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>글 수정하기</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
+	<div id="container">
+		<h2>Edit My Post..</h2>
+		<form th:action="@{/board/update}" method="post" >
+			<table class="detailForm">
+				<tbody>
+					<tr>
+						<td>
+							<p>(Title과 Content만 수정 가능!)</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="|Title |"></span>
+							<input type="text" name="title" th:value="${board.title}" required>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="|Writer |"></span>
+							<input type="text" th:value="${board.member.name}" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea rows="5" cols="60" name="content" th:text="${board.content}" style="width:50vw; height:300px;" ></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:text="|CreatedDate |"></span>
+							<input type="text" th:value="${#dates.format(board.createdDate, 'yyyy-MM-dd HH:mm')}" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td >
+							<input type="submit" value="Save">
+							<input type="reset" value="Cancel">
+							<a th:href="@{/board/list}" class="btns">
+          					  <button type="button" >Back</button>
+       						 </a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
+</body>
+</html>

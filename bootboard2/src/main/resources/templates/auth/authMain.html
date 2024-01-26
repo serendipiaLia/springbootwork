@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>인증메인..</title>
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+</head>
+<body>
+	<h2>인증 및 권한 메인 페이지</h2>
+	
+	<div class="authMain">
+		<p><a th:href="@{/auth/member}">[ MEMBER ]</a></p>
+		<p><a th:href="@{/auth/admin}">[ ADMIN ]</a></p>
+		
+		<div class="main-img">
+			<img th:alt="i_hate_study" src="/images/cute.PNG" style="width:500px">
+		</div>
+	</div>
+</body>
+</html>

@@ -4,20 +4,25 @@
 <meta charset="UTF-8">
 <title>Index</title>
 <link rel="stylesheet" href="/css/style.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
+	<!-- header.html 연결 -->
+	<div th:replace="~{/layout/header::header-fragment}"></div>
+		<div class="weather">
+			<h3>Today's Weather&nbsp;|&nbsp;</h3>
+  		  	<p class="result"></p>
+		</div>
+	
 	<div id="container">
-		<h2>Hi..</h2>
 		<div class="main-img">
-			<img th:alt="i_hate_study" src="/images/study.PNG" style="width:500px">
+			<img th:alt="i_hate_study" src="/images/study.PNG" style="width:50vw; border-radius:30px;">
 		</div>
 		
-		<div class="menu">
-			<a th:href="@{/member/login}" class="btns"><button>Login</button></a>
-			<a th:href="@{/board/write}" class="btns"><button>New Post</button></a>
-			<a th:href="@{/board/list}" class="btns"><button>Posts</button></a>
-		</div>
 	</div>
-
+	<!-- footer.html 연결 -->
+	<div th:replace="~{/layout/footer::footer-fragment}"></div>
+	
+<script src="/js/weather.js"></script>
 </body>
 </html>

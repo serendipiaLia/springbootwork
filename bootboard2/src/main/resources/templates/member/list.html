@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원 목록</title>
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
+	<div id="container">
+		<h2>Our Users..</h2>
+			<table class="tableList">
+				<thead>
+					<tr>
+						<th>No. </th>
+						<th>ID </th>
+						<th>Name </th>
+						<th>Role</th>
+						<th>Detail / Resign</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="member: ${memberList}">
+						<td th:text="${member.id}"></td>
+						<td th:text="${member.memberId}"></td>
+						<td th:text="${member.name}"></td>
+						<td th:text="${member.role}"></td>
+						
+						<td>
+							<th:block th:unless="${#authentication.getPrincipal().getUsername() == member.memberId}">
+      						  <p style="margin:0; font-size:1.2vw; color:darkorange;">본인만 이용 가능합니다</p>
+   							</th:block>
+							<th:block sec:authorize="isAuthenticated()" 	
+									   th:if="${#authentication.getPrincipal.getUsername()} == ${member.memberId}">
+								<a th:href="@{|/member/${member.id}|}" class="view_resign">View </a>/
+								<a th:href="@{|/member/delete/${member.id}|}" onclick="return confirm('해당 회원을 삭제하시겠습니까?')"
+																		class="view_resign">Delete</a>
+							</th:block>
+						</td>
+					</tr>				
+				</tbody>
+			</table>
+			<div class="btns">
+				<a th:href="@{/}"><button>Home</button></a>
+			</div>
+	</div>
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
+</body>
+</html>

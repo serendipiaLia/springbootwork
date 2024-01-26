@@ -24,5 +24,18 @@ public class BoardService {
 	public Board findById(Integer id) {
 		return boardRepository.findById(id).get();
 	}
-
+	// 글쓰기 처리
+	public void save(Board board) {
+		boardRepository.save(board);
+	}
+	// 글 삭제
+	public void deleteById(Integer id) {
+		boardRepository.deleteById(id);
+	}
+	// 글 수정 처리
+	public void update(Board board) {
+		boardRepository.save(board);
+	}
+	
+	
 }

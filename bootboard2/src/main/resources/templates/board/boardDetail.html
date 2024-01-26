@@ -1,46 +1,95 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
+<meta name="_csrf" th:content="${_csrf.token}">
 <title>글 상세보기</title>
 <link rel="stylesheet" href="/css/style.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
 	<div id="container">
-		<h2>Post Detail</h2>
-			<table class="detailForm">
-				<tbody>
-					<tr>
-						<td>
-							<span th:text="|Title : |"></span>
-							<input type="text" name="title" th:value="${board.title}" readonly>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span th:text="|Writer : |"></span>
-							<input type="text" th:value="${board.member.name}" readonly>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<textarea rows="5" cols="60" name="content" th:text="${board.content}" readonly></textarea>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span th:text="|Created : |"></span>
-							<input type="text" th:value="${board.createdDate}" readonly>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a th:href="@{/board/list}" class="btns"><input type="button" value="Back"></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<h2 class="title-H2">Post Detail</h2>
+		
+		<table class="detailForm">
+			<tbody>
+				<tr>
+					<td>
+						<span th:text="|Title |"></span>
+						<input type="text" name="title" th:value="${board.title}" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span th:text="|Writer |"></span>
+						<input type="text" th:value="${board.member.name}" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<textarea rows="5" cols="60" name="content" th:text="${board.content}" style="width:50vw; height:300px;" readonly></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span th:text="|CreatedDate |"></span>
+						<input type="text" th:value="${#dates.format(board.createdDate, 'yyyy-MM-dd HH:mm')}" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>(수정 및 삭제는 로그인 후 본인만 가능합니다.)</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="B-detail-btn">
+						<th:block sec:authorize="isAuthenticated()" 	
+							   th:if="${#authentication.getPrincipal.getUsername()} == ${board.member.memberId}">
+							   
+							<a th:href="@{|/board/update/${board.id}|}" class="btns"><button type="button">Edit</button></a>
+							<a th:href="@{|/board/delete/${board.id}|}" onclick="return confirm('삭제하시겠습니까?')" class="btns"><button type="button">Delete</button></a>
+							
+						</th:block>
+						<a th:href="@{/board/list}" class="btns"><button type="button">Back</button></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<h2 class="title-H2">Comment</h2>
+		<div class="board-reply">
+			<!-- 댓글 영역 -->
+			
+			<!--  댓글 목록 -->
+			<div class="replylist">
+				<div th:each="reply : ${board.replyList}">
+					<p th:text="${reply.content}" class="replycontent"></p>
+					<p th:text="'작성자 : ' + ${reply.member.name} + '(작성일 : ' + ${reply.createdDate} + ' )' " class="replyP"></p>
+					
+					<p class="reply-a-tag">
+						<th:block sec:authorize="isAuthenticated()" 	
+							   th:if="${#authentication.getPrincipal.getUsername()} == ${reply.member.memberId}">
+							<a th:href="'#'">Edit</a>
+							<a th:href="'#'" th:onclick="replyObject.deleteReply([[${board.id}]], [[${reply.id}]])">Delete</a>
+						</th:block>										<!-- 자바스크립트에서 자료형 값을 유지 : [[자료]] -->								
+					</p>									
+				</div>
+			</div>
+			
+			<!--  댓글 등록 -->
+			<div class="addreply">
+				<input type="hidden" id="boardId" th:value="${board.id}">
+				<p>
+					<textarea rows="3" cols="60" id="replyContent" placeholder="your kind comments.."></textarea>
+				</p>
+				<button id="btn-save-reply">Add</button>
+			</div>
+		</div>
 	</div>
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
 
+<script src="/js/reply.js"></script>
 </body>
 </html>
