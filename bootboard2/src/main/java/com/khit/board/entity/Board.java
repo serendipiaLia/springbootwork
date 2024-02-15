@@ -1,10 +1,8 @@
 package com.khit.board.entity;
 
-import java.sql.Timestamp;
 import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import com.khit.board.dto.BoardDTO;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -18,14 +16,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+@Builder
 @Setter
 @Getter
 @ToString(exclude="member")
-@Table(name="boardtable")
+@Table(name="board_table")
 @Entity
 public class Board extends BaseEntity {
 	
@@ -50,5 +50,27 @@ public class Board extends BaseEntity {
 	@OneToMany(mappedBy = "board", cascade=CascadeType.ALL) // cascade=CascadeType.ALL : 게시글 삭제되면 해당 게시글 댓글도 모두 삭제
 	@OrderBy("id desc")
 	private List<Reply> replyList;
+	
+	// dto > entity (글쓰기)
+	public static Board toSaveEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.title(boardDTO.getTitle())
+				.content(boardDTO.getContent())
+				.member(boardDTO.getMember())
+				.build();
+		return board;
+	}
+	// dto > entity (글 수정)
+	public static Board toUpdateEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.id(boardDTO.getId()) // 이미 글 번호 존재하므로 id도 불러오기
+				.title(boardDTO.getTitle())
+				.content(boardDTO.getContent())
+				.member(boardDTO.getMember())
+				.build();
+		return board;
+	}
+	
+	
 	
 }

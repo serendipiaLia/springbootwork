@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<!-- header.html 연결 -->
+	<div th:replace="~{/layout/header::header-fragment}"></div>
+		<div id="weather-info">
+			<h3>Earthquake / Tsunami Guidelines</h3>
+			<button type="button" id="btn1">Run</button>
+			<table id="result1">
+				<thead>
+					<tr>
+						<th>일련번호</th>
+						<th>시/도명</th>
+						<th>시/군구명</th>
+						<th>대피지구명</th>
+						<th>대피장소명</th>
+						<th>주소</th>
+						<th>경도</th>
+						<th>위도</th>
+						<th>수용가능한 인원(명)</th>
+						<th>해변으로부터의 거리</th>
+						<th>대피소 분류명</th>
+						<th>내진적용 여부</th>
+						<th>해발 높이</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- 데이터 출력 -->
+					<!-- Ajax 이용! 예전에 댓글.. -->
+				</tbody>
+			</table>
+		</div>
+	<!-- footer.html 연결 -->
+	<div th:replace="~{/layout/footer::footer-fragment}"></div>
+<script>
+	/* jquery환경 구축 - 버튼 클릭 이벤트 */
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			alert("test");
+			
+			$.ajax({
+				// 요청방식(type), url, data, success, error
+				type: "GET",
+				url: "https://apis.data.go.kr/1741000/TsunamiShelter3/getTsunamiShelter1List?serviceKey=3e6KfjqGd%2BSHh5QtxpCL6hAh8NyMv%2Bzbbz4btxYu3dmUvLkrW6msC23slFSCHRrGmyHzajC8cTa1OcvCICFebQ%3D%3D&pageNo=1&numOfRows=10&type=json",
+				dataType: "json", //받는 데이터는 json 유형임을 명시 필수
+				success: function(data){
+					console.log(data);
+					
+					let itemArr = data.TsunamiShelter[1].row;
+					
+					// 테이블 작성
+					let value = ""; // 태그 + data
+					for(let i=0; i<itemArr.length; i++){
+						let item = itemArr[i]; //각각의 인덱스에 객체 저장
+						value += "<tr>" 
+						+ "<td>" + item.id + "</td>" 
+						+ "<td>" + item.sido_name + "</td>" 
+						+ "<td>" + item.sigungu_name + "</td>" 
+						+ "<td>" + item.remarks + "</td>" 
+						+ "<td>" + item.shel_nm + "</td>" 
+						+ "<td>" + item.address + "</td>" 
+						+ "<td>" + item.lon + "</td>" 
+						+ "<td>" + item.lat + "</td>" 
+						+ "<td>" + item.shel_av + "</td>" 
+						+ "<td>" + item.lenth + "</td>" 
+						+ "<td>" + item.shel_div_type + "</td>" 
+						+ "<td>" + item.seismic + "</td>" 
+						+ "<td>" + item.height + "</td>" 
+						+ "</tr>";
+						
+					}
+					// 데이터 보내줄 곳 지정
+					$("#result1 tbody").html(value);
+				},
+				error: function(error){
+					alert("에러 발생 : " + error);
+				}
+			});
+		});
+	});
+</script>
+</body>
+</html>

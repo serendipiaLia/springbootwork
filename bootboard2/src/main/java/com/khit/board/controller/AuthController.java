@@ -11,4 +11,9 @@ public class AuthController {
 		return "/auth/authMain";
 	}
 	
+	// 권한 에러 페이지 
+	@GetMapping("/auth/accessDenied")
+	public String access() {
+		return "/auth/accessDenied";
+	}
 }

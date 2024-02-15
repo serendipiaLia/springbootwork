@@ -16,6 +16,7 @@
 						<th>ID </th>
 						<th>Name </th>
 						<th>Role</th>
+						<th>Join date</th>
 						<th>Detail / Resign</th>
 					</tr>
 				</thead>
@@ -25,6 +26,7 @@
 						<td th:text="${member.memberId}"></td>
 						<td th:text="${member.name}"></td>
 						<td th:text="${member.role}"></td>
+						<td th:text="${#dates.format(member.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
 						
 						<td>
 							<th:block th:unless="${#authentication.getPrincipal().getUsername() == member.memberId}">

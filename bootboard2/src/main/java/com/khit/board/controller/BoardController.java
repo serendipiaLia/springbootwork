@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.khit.board.config.SecurityUser;
+import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
 import com.khit.board.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RequiredArgsConstructor
@@ -29,8 +29,8 @@ public class BoardController {
 	// 게시글 목록
 	@GetMapping("/list")
 	public String getList(Model model) {
-		List<Board> boardList = boardService.findAll();
-		model.addAttribute("boardList", boardList);
+		List<BoardDTO> boardDTOList = boardService.findAll();
+		model.addAttribute("boardList", boardDTOList);
 		return "/board/list";
 	}
 	// 게시글 상세보기

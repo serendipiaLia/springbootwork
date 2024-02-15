@@ -27,6 +27,9 @@ input{
 .btns button:hover{color:orange; cursor:pointer;}
 label{margin-right: 10px;}
 
+/* accessDenied.html */
+.admin-h3{color : gray; text-align:center; margin:0; margin-bottom:10px;}
+
 /* index.html */
 .main-img{text-align:center;}
 .menu{display:flex; justify-content: space-evenly; margin-bottom:25px;}
@@ -38,25 +41,48 @@ label{margin-right: 10px;}
 .weather h3{color: #575757; font-family: 'Mali', cursive; font-weight:400; margin-top:0;}
 .weather .result{margin-top: 0; font-family: 'Mali', cursive; }
 
+#weather-info{
+	width:80%;
+	margin:0 auto;
+	border:1px solid lightgray; 
+	display:flex;
+	flex-direction: column;
+    align-items: center;
+	}
+	
+#weather-info h3{color: #575757; font-family: 'Mali', cursive;}
+#btn1{font-family: 'Mali', cursive;
+	font-weight:bolder;
+	color:gray;
+	border:none;
+	border-radius: 20px;
+    padding: 5px 25px;
+    background: linear-gradient(to bottom, rgb(210, 210, 210), rgb(253, 253, 253) );
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));}
+
+
 /* join.html */
-.joinForm{width:80%; margin:0 auto; font-family: 'Mali', cursive;}
+.joinForm{width:80%; margin:0 auto;}
 fieldset{display:flex; 
 		justify-content: center; 
 		background: linear-gradient(to top, rgb(210, 210, 210), rgb(253, 253, 253));
 		border-radius: 20px;
 		}
-fieldset ul{display:flex; 
-			flex-direction: column;
-			align-items: flex-end; 
-			padding:0; }
-fieldset ul li{margin:8px;}
-fieldset ul li label{font-weight:bolder; color:gray;}
-input[type="submit"]{font-weight:bolder; color:gray; }
+fieldset ul{
+	display:flex; 
+	align-items: flex-end;
+	flex-direction: column;
+	padding:0; 
+	}
+fieldset ul li{margin:8px; }
+fieldset ul li label{font-weight:bolder; color:gray; font-family: 'Mali', cursive;}
+input[type="submit"]{font-weight:bolder; color:gray; font-family: 'Mali', cursive;}
 input[type="submit"]:hover{color:orange; cursor: pointer; }
-input[type="reset"]{font-weight:bolder; color:gray;}
+input[type="reset"]{font-weight:bolder; color:gray; font-family: 'Mali', cursive;}
 input[type="reset"]:hover{color:orange; cursor: pointer;}
-input[type="file"]{font-weight:bolder; color:gray;}
+input[type="file"]{font-weight:bolder; color:gray; font-family: 'Mali', cursive;}
 input[type="file"]:hover{color:orange; cursor: pointer;}
+.join-p{margin:5px 0 0 0; font-size:1vw; text-align:right; color:darkorange;}
 
 /* login.html */
 .error{font-size:1vw; color:darkorange;}
@@ -109,6 +135,7 @@ input[type="file"]:hover{color:orange; cursor: pointer;}
 /* update.html */
 .updateP{text-align:center; font-size:1.3vw;}
 .updateP span{color: orange;}
+
 
 /* ========================================
  
@@ -173,12 +200,14 @@ input[type="file"]:hover{color:orange; cursor: pointer;}
 
 .reply-a-tag{
 	display:flex;
+	justify-content: space-evenly;
+	width:10vw;
 	font-size:1.2vw; 
 	border-bottom:1px solid lightgray; 
 	margin:5px 0 5px 0; 
 	background: linear-gradient(to top, rgb(210, 210, 210), rgb(253, 253, 253));
 	border-radius: 20px;
-	border: 1.7px solid gray;}
+	}
 
 
 /* pagelist.html */

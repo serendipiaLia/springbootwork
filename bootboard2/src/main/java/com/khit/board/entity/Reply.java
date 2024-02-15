@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Table(name = "replytable")
+@Table(name = "reply_table")
 @Entity
 public class Reply extends BaseEntity{
 	
